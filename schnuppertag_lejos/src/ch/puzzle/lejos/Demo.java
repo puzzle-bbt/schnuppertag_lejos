@@ -12,7 +12,7 @@ public class Demo {
 		// Roboter fahr vorwärts
 		
 		roboter.fahrVorwaerts();
-		roboter.warteAufKlebeband();
+		roboter.warteBisKlebeband();
 		
 		// HIER ENDEN DIE ANWEISUNGEN
 	}

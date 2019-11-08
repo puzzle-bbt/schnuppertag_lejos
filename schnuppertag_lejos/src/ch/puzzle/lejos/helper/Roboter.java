@@ -14,16 +14,13 @@ import lejos.robotics.navigation.DifferentialPilot;
 import lejos.util.Delay;
 
 /**
- * <p>
- * Diese Klasse ist dazu da, den Roboter f&uuml;r den
- * "M&auml;dchen-Informatik-Los" Tag zu steuern. Die Klasse ist optimiert
- * f&uuml;r den NXJ Roboter und unterst&uuml;tzt den Ultraschall und den
+ * Diese Klasse ist dazu da, den Roboter für den
+ * "Mädchen-Informatik-Los" Tag zu steuern. Die Klasse ist optimiert
+ * für den NXJ Roboter und unterstützt den Ultraschall und den
  * Touch-Sensor.
- * </p>
  */
 public class Roboter {
 
-	
 	/**
 	 * DifferentialPilot ist eine Hilfsklasse von der NXJ API. Hier werden die
 	 * Ausmasse des gebauten Roboters konfiguriert. Der Roboter kann damit dann
@@ -32,69 +29,54 @@ public class Roboter {
 	private DifferentialPilot pilot;
 
 	/**
-	 * Der Ber&uuml;hrungs-Sensor, der im Roboter eingebaut ist. Der Roboter
-	 * kann so Ber&uuml;hrungen wahrnehmen.
+	 * Der Berührungs-Sensor, der im Roboter eingebaut ist. Der Roboter
+	 * kann so Berührungen wahrnehmen.
 	 */
-	private TouchSensor touch;
+	private TouchSensor beruehrungsSensor;
 
 	/**
 	 * Der Ultraschall Sensor. Hiermit kann der Roboter "sehen" - resp. die
 	 * Distanz zu Objekten herausfinden.
 	 */
-	private UltrasonicSensor ultrasonic;
+	private UltrasonicSensor distanzZuObjektSensor;
 
 	/**
-	 * Der Lichtsensor Kann zB auf den Boden gerichtet werden. je nach
-	 * Helligkeit des untergrunds der reflektiert wird liefert der Lichtsensor
+	 * Der Lichtsensor kann zB auf den Boden gerichtet werden. je nach
+	 * Helligkeit des Untergrunds der reflektiert wird liefert der Lichtsensor
 	 * einen Wert zurück.
 	 */
 	// if Tom
-	//private ColorSensor light;
-
-	// if jerry;
-	private LightSensor light;
+	private ColorSensor light;
+	
+	// if Jerry
+	//private LightSensor light;
 
 	/**
-	 * 
-	 * 
+	 * Der Soundsensor. Hiermit kann der Roboter "hören".
+	 * Zum Beispiel hört er wenn jemand klatscht.
 	 */
 	private SoundSensor sound;
 
 	/**
-	 * <p>
-	 * Konstruktor.
-	 * </p>
+	 * Das ist ein Konstruktor.
 	 * 
-	 * <p>
 	 * Hier wird der Roboter mit seinen Sensoren erstellt.
-	 * </p>
 	 */
-	
 	public Roboter() {
-		ultrasonic = new UltrasonicSensor(SensorPort.S3);
+		distanzZuObjektSensor = new UltrasonicSensor(SensorPort.S3);
 		pilot = new DifferentialPilot(0.88f, 4.72f, Motor.C, Motor.A);
 		sound = new SoundSensor(SensorPort.S1, true);
-		// if Tom
-		//light = new ColorSensor(SensorPort.S2);
-
-		// if Jerry
-		light = new LightSensor(SensorPort.S2);
-		
-		
+		light = new ColorSensor(SensorPort.S2);
 	}
 
 	/**
-	 * <p>
-	 * Fahre mit der aktuell eingestellten Geschwindigkeit vorw&auml;rts. Der
-	 * Roboter stoppt erst, wenn er einen neuen Befehl erh&auml;lt.
-	 * </p>
+	 * Fahre mit der aktuell eingestellten Geschwindigkeit vorwärts. Der
+	 * Roboter stoppt erst, wenn er einen neuen Befehl erhält.
 	 * 
-	 * <p>
-	 * Die Geschwindigkeit, mit der der Roboter f&auml;hrt, ist abh&auml;ngig
-	 * von den fr&uuml;her eingestellten Werten. Sind noch keine expliziten
-	 * Geschwindigkeiten konfiguriert worden, so f&auml;hrt der Roboter in der
+	 * Die Geschwindigkeit, mit der der Roboter fährt, ist abhängig
+	 * von den früher eingestellten Werten. Sind noch keine expliziten
+	 * Geschwindigkeiten konfiguriert worden, so fährt der Roboter in der
 	 * Standard Geschwindigkeit.
-	 * </p>
 	 */
 	public void fahrVorwaerts() {
 		Motor.A.forward();
@@ -102,14 +84,10 @@ public class Roboter {
 	}
 
 	/**
-	 * <p>
-	 * Fahre vorw&auml;rts. Der Wert, der in der Klammer mitgegeben wird, ist
+	 * Fahre vorwärts. Der Wert, der in der Klammer mitgegeben wird, ist
 	 * die Geschwindigkeit, mit der der Roboter fahren soll.
-	 * </p>
 	 * 
-	 * <p>
-	 * Der Roboter stoppt erst, wenn er einen neuen Befehl erh&auml;lt.
-	 * </p>
+	 * Der Roboter stoppt erst, wenn er einen neuen Befehl erhält.
 	 * 
 	 * @param geschwindigkeit
 	 *            die Geschwindigkeit, mit der der Roboter fahren soll.
@@ -122,14 +100,10 @@ public class Roboter {
 	}
 
 	/**
-	 * <p>
-	 * Fahre r&uuml;ckw&auml;rts. Der Wert, der in der Klammer mitgegeben wird,
+	 * Fahre rückwärts. Der Wert, der in der Klammer mitgegeben wird,
 	 * ist die Geschwindigkeit, mit der der Roboter fahren soll.
-	 * </p>
 	 * 
-	 * <p>
-	 * Der Roboter stoppt erst, wenn er einen neuen Befehl erh&auml;lt.
-	 * </p>
+	 * Der Roboter stoppt erst, wenn er einen neuen Befehl erhält.
 	 * 
 	 * @param geschwindigkeit
 	 *            die Geschwindigkeit, mit der der Roboter fahren soll.
@@ -142,17 +116,13 @@ public class Roboter {
 	}
 
 	/**
-	 * <p>
-	 * Fahre mit der aktuell eingestellten Geschwindigkeit r&uuml;ckw&auml;rts.
-	 * Der Roboter stoppt erst, wenn er einen neuen Befehl erh&auml;lt.
-	 * </p>
+	 * Fahre mit der aktuell eingestellten Geschwindigkeit rückwärts.
+	 * Der Roboter stoppt erst, wenn er einen neuen Befehl erhält.
 	 * 
-	 * <p>
-	 * Die Geschwindigkeit, mit der der Roboter f&auml;hrt, ist abh&auml;ngig
-	 * von den fr&uuml;her eingestellten Werten. Sind noch keine expliziten
-	 * Geschwindigkeiten konfiguriert worden, so f&auml;hrt der Roboter in der
+	 * Die Geschwindigkeit, mit der der Roboter fährt, ist abhängig
+	 * von den früher eingestellten Werten. Sind noch keine expliziten
+	 * Geschwindigkeiten konfiguriert worden, so fährt der Roboter in der
 	 * Standard Geschwindigkeit.
-	 * </p>
 	 */
 	public void fahrRueckwaerts() {
 		Motor.A.backward();
@@ -160,11 +130,9 @@ public class Roboter {
 	}
 
 	/**
-	 * <p>
-	 * Fahre eine bestimmte Distanz vorw&auml;rts. Die Distanz muss in der
+	 * Fahre eine bestimmte Distanz vorwärts. Die Distanz muss in der
 	 * Klammer geschrieben werden. Nachdem der Roboter die Distanz gefahren hat,
-	 * stoppt er und wartet auf die n&auml;chste Instruktion.
-	 * </p>
+	 * stoppt er und wartet auf die nächste Instruktion.
 	 * 
 	 * @param distanz
 	 *            die Distanz, die der Roboter fahren soll.
@@ -174,11 +142,9 @@ public class Roboter {
 	}
 
 	/**
-	 * <p>
-	 * Fahre eine bestimmte Distanz rueckwaerts Die Distanz muss in der
-	 * Klammer geschrieben werden. Nachdem der Roboter die Distanz gefahren hat,
-	 * stoppt er und wartet auf die n&auml;chste Instruktion.
-	 * </p>
+	 * Fahre eine bestimmte Distanz rueckwaerts Die Distanz muss in der Klammer
+	 * geschrieben werden. Nachdem der Roboter die Distanz gefahren hat, stoppt
+	 * er und wartet auf die nächste Instruktion.
 	 * 
 	 * @param distanz
 	 *            die Distanz, die der Roboter fahren soll.
@@ -186,114 +152,100 @@ public class Roboter {
 	public void fahrDistanzRueckwaerts(int distanz) {
 		pilot.travel(-distanz);
 	}
+
 	/**
-	 * <p>
 	 * Fahre eine Kurve. Der Winkel, der gefahren werden soll, muss in die
 	 * Klammer geschrieben werden. Der Roboter dreht sich gegen Rechts.
-	 * </p>
 	 * 
 	 * @param winkel
 	 *            der Winkel, der der Roboter fahren soll.
 	 */
-	public void fahrKurveRechts(int winkel) {
+	public void dreheNachRechts(int winkel) {
 		pilot.rotate(winkel / 2);
 	}
 
 	/**
-	 * <p>
 	 * Fahre eine Kurve. Der Winkel, der gefahren werden soll, muss in die
 	 * Klammer geschrieben werden. Der Roboter dreht sich gegen Links.
-	 * </p>
 	 * 
 	 * @param winkel
 	 *            der Winkel, der der Roboter fahren soll.
 	 */
-	public void fahrKurveLinks(int winkel) {
+	public void dreheNachLinks(int winkel) {
 		pilot.rotate(-winkel / 2);
 	}
-	
+
 	public void warteBisLautstaerke(int lautstaerke) {
-		while(lautstaerke>sound.readValue()){
+		while (lautstaerke > sound.readValue()) {
 		}
 	}
 
-	
 	/**
-	 * <p>
 	 * Sag mir, ob der Roboter aktuell am Fahren ist. Wenn der Roboter am Fahren
-	 * ist, dann wird hier <code>true</code> ("Ja") zur&uuml;ckgegeben,
-	 * ansonsten <code>false</code> ("Nein").
-	 * </p>
+	 * ist, dann wird hier true ("Ja") zurückgegeben,
+	 * ansonsten false ("Nein").
 	 * 
-	 * @return <code>true</code>, wenn der Roboter aktuell f&auml;hrt,
-	 *         <code>false</code> sonst
+	 * @return true, wenn der Roboter aktuell fährt, sonst
+	 *         false
 	 */
-	public boolean roboterFaehrt() {
+	public boolean faehrtDerRoboter() {
 		return pilot.isMoving();
 	}
 
 	/**
-	 * <p>
 	 * Stoppe den Roboter, egal was er gerade am machen ist.
-	 * </p>
 	 */
-	public void stop() {
+	public void stoppeRoboter() {
 		pilot.stop();
 	}
 
 	/**
-	 * <p>
-	 * Sag mir, wie schnell der Roboter aktuell gerade f&auml;hrt.
-	 * </p>
+	 * Sag mir, wie schnell der Roboter aktuell gerade fährt.
 	 * 
-	 * @return Geschwindigkeit, mit der der Roboter aktuell gerade f&auml;hrt.
+	 * @return Geschwindigkeit, mit der der Roboter aktuell gerade fährt.
 	 */
-	public double holeGeschwindigkeit() {
+	public double gibGeschwindigkeitAus() {
 		return pilot.getTravelSpeed();
 	}
 
 	/**
-	 * <p>
-	 * Ver&auml;ndere die Geschwindigkeit des Roboters. Die neue Geschwindigkeit
+	 * Verändere die Geschwindigkeit des Roboters. Die neue Geschwindigkeit
 	 * muss in die Klammer geschrieben werden.
-	 * </p>
 	 * 
 	 * @param geschwindigkeit
 	 *            die neue Geschwindigkeit des Roboters.
 	 */
-	public void setzeGeschwindigkeit(double geschwindigkeit) {
+	public void setzeNeueGeschwindigkeit(double geschwindigkeit) {
 		pilot.setTravelSpeed(geschwindigkeit);
 	}
 
 	/**
-	 * <p>
-	 * Fahre vorw&auml;rts, bis der Roboter ein Objekt "sieht". Die Distanz, bis
+	 * Fahre vorwärts, bis der Roboter ein Objekt "sieht". Die Distanz, bis
 	 * er halten soll, muss in Klammer angegeben werden.
-	 * </p>
 	 * 
 	 * @param distanz
-	 *            die Distanz, bis zu der der Roboter vor ein Objekt fahren
-	 *            soll.
+	 *            die Distanz, bis zu der der Roboter
+	 *            vor ein Objekt fahren soll.
 	 */
-	public void warteAufObjekt(int distanz) {
-		ultrasonic.continuous();
-		while (ultrasonic.getDistance() > distanz) {
-			
+	public void halteWennDistanzZuObjekt(int distanz) {
+		distanzZuObjektSensor.continuous();
+		while (distanzZuObjektSensor.getDistance() > distanz) {
+
 		}
 	}
 
 	/**
-	 * Der Roboter wartet, bis ein Knopf gedr&uuml;ckt wird.
+	 * Der Roboter wartet, bis ein Knopf gedrückt wird.
 	 */
-	public void warteBisKnopfGedruecktWird() {
+	public void warteBisEinKnopfGedruecktWird() {
 		Button.waitForAnyPress();
 	}
 
 	/**
-	 * Der Roboter führt die momentane aktion weiter bis er auf dem boden ein
+	 * Der Roboter führt die momentane Aktion weiter bis er auf dem Boden ein
 	 * Klebeband sieht.
 	 */
-	public void warteAufKlebeband() {
+	public void warteBisKlebeband() {
 		light.setFloodlight(true);
 		while (true) {
 			int licht = (int) light.getLightValue();
@@ -304,13 +256,11 @@ public class Roboter {
 		light.setFloodlight(false);
 
 	}
-	
-
 
 	/**
 	 * der Roboter fährt schneller wenn es lauter ist.
 	 */
-	public void fahreLautstaerkeBisKlebeband() {
+	public void fahreSchnellerWennLautstaerkeLauterBisKlebeband() {
 		light.setFloodlight(true);
 		while (true) {
 			int speed = sound.readValue();
@@ -324,38 +274,48 @@ public class Roboter {
 	}
 
 	/**
-	 * Mache "Beep".
+	 * Mache Geräusch "Beep".
 	 */
-	public void beep() {
+	public void macheBeep() {
 		Sound.beep();
 	}
 
 	/**
-	 * Mache "Buzz".
+	 * Mache Geräusch "Buzz".
 	 */
-	public void buzz() {
+	public void macheBuzz() {
 		Sound.buzz();
 	}
 
-
-	
+	/**
+	 * Roboter fährt für Anzahl Milisekunden.
+	 */
 	public void fahrFuerMiliSekunden(int milisekunden) {
 		pilot.forward();
 		Delay.msDelay(milisekunden);
 		pilot.stop();
 	}
 
+	/**
+	 * Roboter wartet für Anzahl Milisekunden
+	 */
+	public void warteFuerMiliSekunden(int milisekunden) {
+		long milisekunden2 = (long) milisekunden;
+		try {
+			pilot.wait(milisekunden2);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 
-public void warteFuerMiliSekunden(int ms){
-	long ms2 = (long) ms;
-	try {
-		pilot.wait(ms2);	
-	} catch (Exception e) {
-		System.out.println(e);
+	}
+
+	/**
+	 * Roboter fährt weiter für Anzahl Milisekunden
+	 */
+	public void fahrWeiterFuerMiliSekunden(int milisekunden) {
+		Delay.msDelay(milisekunden);
 	}
 	
-}
-public void weiterFuerMiliSekunden(int ms) {
-	Delay.msDelay(ms);
-}
+	
+	
 }
