@@ -8,11 +8,7 @@ package ch.puzzle.lejos;
 public class SensorTest {
 	public static void main(String[] args) {
 	//HIER WIRD DER CODE GESCHRIEBEN
-		
-		
-		
-		
-		
+	
 		
 	//HIER ENDET DER CODE
 	}

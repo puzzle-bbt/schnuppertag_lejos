@@ -2,5 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="schnuppertag_lejos/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/Zukunftstag2/opt/leJOS_NXJ_0.9.1beta-3/lib/nxt/classes.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

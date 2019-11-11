@@ -11,8 +11,6 @@ public class Demo {
 		
 		// Roboter fahr vorwärts
 		
-		roboter.fahrVorwaerts();
-		roboter.warteBisKlebeband();
 		
 		// HIER ENDEN DIE ANWEISUNGEN
 	}

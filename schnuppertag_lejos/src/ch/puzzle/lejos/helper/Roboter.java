@@ -48,8 +48,8 @@ public class Roboter {
 	// if Tom
 	private ColorSensor light;
 	
-	// if Jerry
-	//private LightSensor light;
+	// if ET
+	// private LightSensor light;
 
 	/**
 	 * Der Soundsensor. Hiermit kann der Roboter "hören".
@@ -66,7 +66,10 @@ public class Roboter {
 		distanzZuObjektSensor = new UltrasonicSensor(SensorPort.S3);
 		pilot = new DifferentialPilot(0.88f, 4.72f, Motor.C, Motor.A);
 		sound = new SoundSensor(SensorPort.S1, true);
+		// if Tom
 		light = new ColorSensor(SensorPort.S2);
+		// if ET
+		// light = new LightSensor(SensorPort.S2);
 	}
 
 	/**
